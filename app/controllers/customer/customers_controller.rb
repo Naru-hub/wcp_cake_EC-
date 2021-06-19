@@ -1,4 +1,4 @@
-class CustomersController < ApplicationController
+class cutomer::CustomersController < ApplicationController
   def show
   end
 
