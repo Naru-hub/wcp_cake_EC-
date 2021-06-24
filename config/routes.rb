@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update]
     resources :products, only: [:index, :new, :create, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
-    get root to: 'homes#top'
+    get '/' => 'homes#top'
   end
   
   
@@ -28,19 +28,19 @@ Rails.application.routes.draw do
 
   
   #会員側
-  scope module: :customers do
+  scope module: :customer do
     resources :customers, only: [:show, :edit, :update]
-    post 'customers/confirm' => 'customers#confirm'
-    patch 'customers/out' => 'customers#out'
+    post 'confirm' => 'customer#confirm'
+    patch 'out' => 'customer#out'
     resources :products, only: [:index, :show]
-    resources :cart_items, only: [:index, :update, :create]
     delete 'cart_items/all_destroy' => 'cart_items#all_destroy'
     delete 'cart_items/:id' => 'cart_items#destroy', as: 'destroy_cart'
-    resources :orders, only: [:new, :create, :index, :show]
-    get 'orders/thanx' => 'orders#thanx'
+    resources :cart_items, only: [:index, :update, :create]
+     get 'orders/thanx' => 'orders#thanx'
     post 'orders/confirm' => 'orders#confirm'
+    resources :orders, only: [:new, :create, :index, :show]
     resources :addresses, only: [:index, :create, :destroy, :edit, :update]
-    get root to: "homes#top"
+    root to: "homes#top"
     get 'about' => 'homes#about'
   end
 end
