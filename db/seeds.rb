@@ -13,7 +13,7 @@ Customer.create!(last_name: "紳士",
                 email: "test@test.com",
                 password: "password",
                 is_deleted: false,
-                postal_code: "1234567"
+                postal_code: "1234567",
                 address: "東京都渋谷区代々木神園町0-0",
                 phone_number: "09012345678",
   )
