@@ -1,2 +1,23 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2>商品一覧<span class="small">(全<%= @product_count %>件)</span></h2>
+    </div>
+  </div>
+    <div class="row">
+        <% @products.each do |product| %>
+          <%= link_to product_path(product), style: "color: black;" do %>
+            <%= attachment_image_tag product, :image, fallback:"no_image.png", size: "180 x 150" %>
+            <%= product.name %>
+            <%= (product.price*1.1).floor.to_s(:delimited) %>円<small>(税込)</small>
+          <% end %>
+          <% if product.is_sale == true %>
+            <div class="text_success">販売中</div>
+          <% else %>
+            <div class="text-black-50">売り切れ</div>
+          <% end %>  
+        <% end %>
+    </div>
+    <div class="row alingn-self-center">
+      <%= paginate @products %>
+    </div>
